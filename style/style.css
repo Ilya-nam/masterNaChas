@@ -71,6 +71,7 @@
 	background-image: url(/images/hero_background.png);
 	background-repeat: no-repeat;
 	background-size: cover;
+	background-attachment: fixed;
 	min-height: 100vh;
 	display: flex;
 	align-items: center;
@@ -131,7 +132,44 @@
 
 .advantages {
 	background-color: var(--bg_color);
-	min-height: 150vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: calc(var(--index) * 2) calc(var(--index) * 2);
+}
+
+.advantages_list {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: calc(var(--index) * 2);
+}
+
+.advantages__h1 {
+	color: var(--font_color);
+	font-size: var(--largeFS);
+	font-weight: 700;
+	margin-bottom: calc(var(--index) * 2);
+}
+
+.advantage {
+	display: flex;
+	flex-direction: row;
+	gap: calc(var(--index) * 0.6);
+	align-items: center;
+	width: calc(var(--index) * 13);
+}
+
+.advantage__img {
+	width: calc(var(--index) * 2);
+	height: calc(var(--index) * 2);
+}
+
+.advantage__p {
+	color: var(--font_color);
+	font-size: var(--mediumFS);
 }
 
 @media (prefers-color-scheme: light) {
