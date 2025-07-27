@@ -28,3 +28,29 @@ document.addEventListener('DOMContentLoaded', () => {
 		})
 	})
 })
+
+const reviews = document.querySelectorAll('.review')
+const nextBtn = document.querySelector('.carousel-btn.next')
+const prevBtn = document.querySelector('.carousel-btn.prev')
+let current = 0
+
+function showReview(index) {
+	reviews.forEach((review, i) => {
+		review.classList.toggle('active', i === index)
+	})
+}
+
+function nextReview() {
+	current = (current + 1) % reviews.length
+	showReview(current)
+}
+
+function prevReview() {
+	current = (current - 1 + reviews.length) % reviews.length
+	showReview(current)
+}
+
+nextBtn.addEventListener('click', nextReview)
+prevBtn.addEventListener('click', prevReview)
+
+setInterval(nextReview, 7000) // автоматическая прокрутка каждые 7 секунд

@@ -16,7 +16,7 @@ html {
 	--extraLargeFS: calc(var(--index) * 2.5);
 
 	--bg_color: rgb(15, 15, 15);
-	--bg2_color: #2a2a2a;
+	--bg2_color: #141414;
 	--bg_inp: #535353;
 	--font_color: rgb(255, 255, 255);
 }
@@ -284,18 +284,41 @@ html {
 	margin-bottom: calc(var(--index) * 2);
 }
 
-.price_list_desc {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	gap: calc(var(--index) * 3);
+.price-table-accordion {
+	margin-bottom: calc(var(--index) * 2);
+	width: 100%;
+}
+
+.price-table-accordion details {
+	margin-bottom: calc(var(--index) * 1.2);
+	width: 100%;
+	border: 1px solid #444;
+	border-radius: 10px;
+	overflow: hidden;
+	background-color: var(--bg2_color);
+}
+
+.price-table-accordion summary {
+	padding: calc(var(--index) * 0.8);
+	background-color: var(--bg2_color);
+	width: 100%;
+	color: var(--font_color);
+	cursor: pointer;
+	font-size: var(--regularFS);
+	font-weight: 600;
+	user-select: none;
+	outline: none;
+	transition: 0.3s;
+}
+
+.price-table-accordion summary::-webkit-details-marker {
+	display: none;
 }
 
 .price-table {
 	width: 100%;
+	table-layout: fixed;
 	border-collapse: collapse;
-	margin-bottom: calc(var(--index) * 2);
-	border: 1px solid #444;
 }
 
 .price-table th,
@@ -306,7 +329,7 @@ html {
 }
 
 .price-table th {
-	background-color: var(--bg_inp);
+	background-color: var(--bg2_color);
 	color: #ff8800;
 	font-size: var(--regularFS);
 	font-weight: 600;
@@ -318,54 +341,8 @@ html {
 	font-size: var(--regularFS);
 }
 
-.price_list_form {
-	background-color: var(--bg2_color);
-	padding: calc(var(--index) * 2);
-	border-radius: 10px;
-	max-width: 600px;
-	margin: 0 auto;
-	text-align: center;
-}
-
-.price_list_form h2 {
-	color: #ff8800;
-	font-size: calc(var(--index) * 1.5);
-	font-weight: 700;
-	margin-bottom: calc(var(--index) * 0.5);
-}
-
-.price_list_form p {
-	margin-bottom: calc(var(--index) * 1.5);
-	color: var(--font_color);
-	font-size: var(--regularFS);
-}
-
-.price_list_form input,
-.price_list_form textarea {
-	width: 100%;
-	padding: 12px;
-	margin-bottom: 15px;
-	border: none;
-	border-radius: 6px;
-	font-size: var(--regularFS);
-	background-color: var(--bg_inp);
-	color: var(--font_color);
-	font-size: 1rem;
-}
-
-.price_list_form textarea {
-	resize: none;
-	min-height: 100px;
-}
-
-.price_list_form .btn {
-	width: 100%;
-	background-color: #ff8800;
-	color: white;
-	padding: calc(var(--index) * 0.5) calc(var(--index));
-	font-size: var(--mediumFS);
-	border-radius: 6px;
-	font-weight: 600;
+.price-table tr:last-child td {
+	border-bottom: none;
 }
 
 .category-row {
@@ -374,12 +351,247 @@ html {
 	letter-spacing: 0.5px;
 }
 
+.reviews {
+	background-color: var(--bg_color);
+	padding: calc(var(--index) * 3) calc(var(--index));
+	text-align: center;
+	position: relative;
+}
+
+.reviews-carousel {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 40vw;
+	margin: calc(var(--index) * 2) auto 0;
+	position: relative;
+}
+
+.reviews-wrapper {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	height: calc(var(--index) * 10);
+}
+
+.review {
+	position: absolute;
+	width: 100%;
+	opacity: 0;
+	transition: opacity 0.5s ease;
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+.reviews__h1 {
+	color: var(--font_color);
+	font-weight: 700;
+	font-size: var(--largeFS);
+}
+
+.review.active {
+	opacity: 1;
+}
+
+.review-text,
+.review-name,
+.stars {
+	font-size: var(--regularFS);
+	color: var(--font_color);
+}
+
+.review-text {
+	margin-bottom: 15px;
+}
+
+.review-meta {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	max-width: 90%;
+	margin: 0 auto;
+}
+
+.stars {
+	color: #ff8800;
+}
+
+.carousel-btn {
+	background: none;
+	border: none;
+	color: #ff8800;
+	font-size: 28px;
+	cursor: pointer;
+	padding: 10px;
+	transition: color 0.3s;
+}
+
+.carousel-btn:hover {
+	color: #ffa733;
+}
+
+.contacts {
+	background-color: var(--bg_color);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-bottom: calc(var(--index) * 5);
+}
+
+.contacts__h1 {
+	color: var(--font_color);
+	font-size: var(--largeFS);
+	font-weight: 700;
+	margin-bottom: calc(var(--index) * 2);
+}
+
+.contacts__block {
+	display: flex;
+	flex-direction: row;
+}
+
+.contacts__block ul {
+	display: flex;
+	flex-direction: column;
+	gap: calc(var(--index) * 0.6);
+}
+
+.contacts__block__li {
+	color: var(--font_color);
+	font-size: var(--regularFS);
+}
+
+.contacts__link {
+	color: #ff8800;
+	font-weight: 600;
+}
+
+.contacts__form {
+	display: flex;
+	flex-direction: column;
+	width: 30vw;
+	margin-left: calc(var(--index) * 2);
+	gap: calc(var(--index) * 0.5);
+	font-size: var(--regularFS);
+}
+
+.contacts__form input,
+.contacts__form textarea {
+	padding: 10px;
+	border-radius: 10px;
+}
+
+.contacts__form textarea {
+	resize: none;
+}
+
+.contacts__form h2 {
+	font-size: var(--mediumFS);
+	color: #ff8800;
+	font-weight: 700;
+}
+
+.footer {
+	background-color: var(--bg_color);
+	color: var(--font_color);
+	padding: 60px 20px 30px;
+	font-size: var(--regularFS);
+}
+
+.footer__container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 40px;
+	justify-content: space-evenly;
+}
+
+.footer__logo {
+	flex: 1 1 300px;
+}
+
+.footer__logo h2 {
+	color: #ff8800;
+	margin-bottom: 15px;
+	font-size: var(--regularFS);
+}
+
+.footer__logo p {
+	color: var(--font_color);
+	line-height: 1.6;
+}
+
+.footer__links {
+	flex: 1 1 200px;
+}
+
+.footer__links h3 {
+	color: #ff8800;
+	margin-bottom: 15px;
+}
+
+.footer__links ul {
+	list-style: none;
+	padding: 0;
+}
+
+.footer__links ul li {
+	margin-bottom: 10px;
+}
+
+.footer__links ul li a {
+	color: var(--font_color);
+	text-decoration: none;
+	transition: color 0.3s;
+}
+
+.footer__links ul li a:hover {
+	color: #ff8800;
+}
+
+.footer__contact {
+	flex: 1 1 250px;
+}
+
+.footer__contact h3 {
+	color: #ff8800;
+	margin-bottom: 15px;
+}
+
+.footer__contact p {
+	margin-bottom: 10px;
+	color: var(--font_color);
+}
+
+.footer__contact i {
+	margin-right: 8px;
+	color: #ff8800;
+}
+
+.footer__bottom {
+	border-top: 1px solid #333;
+	margin-top: 40px;
+	padding-top: 20px;
+	text-align: center;
+	color: var(--font_color);
+	font-size: 14px;
+}
+
+.footer__bottom a,
+.footer__bottom p {
+	color: var(--font_color);
+	text-decoration: none;
+}
+
+.footer__bottom a:hover {
+	color: #ff8800;
+}
+
 @media (prefers-color-scheme: light) {
 	:root {
-		--bg_color: rgb(255, 255, 255);
-		--bg2_color: rgb(231, 231, 231);
+		--bg_color: rgb(223, 223, 223);
+		--bg2_color: rgb(211, 211, 211);
 		--font_color: rgb(15, 15, 15);
-		--bg_inp: #d4d4d4;
+		--bg_inp: #c4c4c4;
 	}
 	.header_nav__link.dark-text {
 		color: var(--font_color);
