@@ -16,6 +16,8 @@ html {
 	--extraLargeFS: calc(var(--index) * 2.5);
 
 	--bg_color: rgb(15, 15, 15);
+	--bg2_color: #2a2a2a;
+	--bg_inp: #535353;
 	--font_color: rgb(255, 255, 255);
 }
 
@@ -190,7 +192,7 @@ html {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: calc(var(--index) * 4) calc(var(--index) * 3);
+	padding: calc(var(--index) * 6) calc(var(--index) * 3);
 }
 
 .parabola-services {
@@ -252,10 +254,132 @@ html {
 	margin-top: calc(var(--index) * 0.8);
 }
 
+.services-bottom-svg {
+	height: calc(var(--index) * 5);
+	width: 100%;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	transform: translateY(1px);
+}
+
+.services-bottom-svg path {
+	fill: var(--bg_color);
+}
+
+.price_list {
+	background-color: var(--bg_color);
+	color: var(--font_color);
+	padding: calc(var(--index) * 3) calc(var(--index) * 2);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.price_list__h1 {
+	color: var(--font_color);
+	font-size: var(--largeFS);
+	font-weight: 700;
+	margin-bottom: calc(var(--index) * 2);
+}
+
+.price_list_desc {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: calc(var(--index) * 3);
+}
+
+.price-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: calc(var(--index) * 2);
+	border: 1px solid #444;
+}
+
+.price-table th,
+.price-table td {
+	padding: calc(var(--index) * 0.8);
+	border-bottom: 1px solid #444;
+	text-align: left;
+}
+
+.price-table th {
+	background-color: var(--bg_inp);
+	color: #ff8800;
+	font-size: var(--regularFS);
+	font-weight: 600;
+}
+
+.price-table td {
+	background-color: var(--bg2_color);
+	color: var(--font_color);
+	font-size: var(--regularFS);
+}
+
+.price_list_form {
+	background-color: var(--bg2_color);
+	padding: calc(var(--index) * 2);
+	border-radius: 10px;
+	max-width: 600px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.price_list_form h2 {
+	color: #ff8800;
+	font-size: calc(var(--index) * 1.5);
+	font-weight: 700;
+	margin-bottom: calc(var(--index) * 0.5);
+}
+
+.price_list_form p {
+	margin-bottom: calc(var(--index) * 1.5);
+	color: var(--font_color);
+	font-size: var(--regularFS);
+}
+
+.price_list_form input,
+.price_list_form textarea {
+	width: 100%;
+	padding: 12px;
+	margin-bottom: 15px;
+	border: none;
+	border-radius: 6px;
+	font-size: var(--regularFS);
+	background-color: var(--bg_inp);
+	color: var(--font_color);
+	font-size: 1rem;
+}
+
+.price_list_form textarea {
+	resize: none;
+	min-height: 100px;
+}
+
+.price_list_form .btn {
+	width: 100%;
+	background-color: #ff8800;
+	color: white;
+	padding: calc(var(--index) * 0.5) calc(var(--index));
+	font-size: var(--mediumFS);
+	border-radius: 6px;
+	font-weight: 600;
+}
+
+.category-row {
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
 @media (prefers-color-scheme: light) {
 	:root {
 		--bg_color: rgb(255, 255, 255);
+		--bg2_color: rgb(231, 231, 231);
 		--font_color: rgb(15, 15, 15);
+		--bg_inp: #d4d4d4;
 	}
 	.header_nav__link.dark-text {
 		color: var(--font_color);

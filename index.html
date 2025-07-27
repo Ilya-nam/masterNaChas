@@ -11,13 +11,13 @@
 	<body>
 		<header class="header">
 			<nav class="header_nav">
-				<p class="logo orange_text">МНЧ</p>
+				<a class="logo orange_text" href="#hero">МНЧ</a>
 				<ul class="header_nav__ul">
 					<li><a href="#services" class="header_nav__link">Услуги</a></li>
-					<li><a href="" class="header_nav__link">Цены</a></li>
-					<li><a href="" class="header_nav__link">Мастера</a></li>
-					<li><a href="" class="header_nav__link">Отзывы</a></li>
-					<li><a href="" class="header_nav__link">Контакты</a></li>
+					<li><a href="#price-list" class="header_nav__link">Цены</a></li>
+					<li><a href="#masters" class="header_nav__link">Мастера</a></li>
+					<li><a href="#reviews" class="header_nav__link">Отзывы</a></li>
+					<li><a href="#contacts" class="header_nav__link">Контакты</a></li>
 				</ul>
 			</nav>
 			<button class="call_button">
@@ -26,7 +26,7 @@
 		</header>
 		<main class="main">
 			<article class="main_article">
-				<section class="hero">
+				<section class="hero" id="hero">
 					<div class="hero__text">
 						<h1 class="hero_first_h1">МАСТЕР НА ЧАС</h1>
 						<h1 class="hero_second_h1">
@@ -183,6 +183,157 @@
 								Сборка шкафов, кроватей, кухонь и другой мебели из IKEA и других
 							</p>
 						</a>
+					</div>
+					<svg
+						viewBox="0 0 1440 320"
+						class="services-bottom-svg"
+						preserveAspectRatio="none"
+					>
+						<path d="M0,192 C480,320 960,0 1440,128 L1440,320 L0,320 Z"></path>
+					</svg>
+				</section>
+				<section class="price_list alterable_block" id="price-list">
+					<h1 class="price_list__h1">Актуальны цены</h1>
+					<div class="price_list_desc">
+						<table class="price-table">
+							<thead>
+								<tr>
+									<th>Услуга</th>
+									<th>Время</th>
+									<th>Гарантия</th>
+									<th>Цена</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- Электрика -->
+								<tr>
+									<td colspan="4" class="category-row">Электрика</td>
+								</tr>
+								<tr>
+									<td>Установка розетки / выключателя</td>
+									<td>30 мин</td>
+									<td>12 мес</td>
+									<td>от 500 ₽</td>
+								</tr>
+								<tr>
+									<td>Монтаж светильника / люстры</td>
+									<td>45 мин</td>
+									<td>12 мес</td>
+									<td>от 800 ₽</td>
+								</tr>
+								<tr>
+									<td>Проверка и замена проводки</td>
+									<td>1.5–3 ч</td>
+									<td>24 мес</td>
+									<td>от 2500 ₽</td>
+								</tr>
+
+								<!-- Сантехника -->
+								<tr>
+									<td colspan="4" class="category-row">Сантехника</td>
+								</tr>
+								<tr>
+									<td>Устранение протечки</td>
+									<td>1 час</td>
+									<td>6 мес</td>
+									<td>от 700 ₽</td>
+								</tr>
+								<tr>
+									<td>Установка смесителя</td>
+									<td>40 мин</td>
+									<td>12 мес</td>
+									<td>от 900 ₽</td>
+								</tr>
+								<tr>
+									<td>Замена сифона / гофры</td>
+									<td>30–45 мин</td>
+									<td>12 мес</td>
+									<td>от 600 ₽</td>
+								</tr>
+
+								<!-- Компьютерная помощь -->
+								<tr>
+									<td colspan="4" class="category-row">Компьютеры</td>
+								</tr>
+								<tr>
+									<td>Установка Windows</td>
+									<td>1 час</td>
+									<td>1 мес</td>
+									<td>от 1000 ₽</td>
+								</tr>
+								<tr>
+									<td>Удаление вирусов</td>
+									<td>1 час</td>
+									<td>1 мес</td>
+									<td>от 800 ₽</td>
+								</tr>
+								<tr>
+									<td>Настройка интернета / Wi-Fi</td>
+									<td>30–60 мин</td>
+									<td>1 мес</td>
+									<td>от 700 ₽</td>
+								</tr>
+
+								<!-- Принтеры -->
+								<tr>
+									<td colspan="4" class="category-row">Принтеры</td>
+								</tr>
+								<tr>
+									<td>Установка и настройка принтера</td>
+									<td>30 мин</td>
+									<td>1 мес</td>
+									<td>от 800 ₽</td>
+								</tr>
+								<tr>
+									<td>Заправка картриджа</td>
+									<td>20 мин</td>
+									<td>1 мес</td>
+									<td>от 500 ₽</td>
+								</tr>
+								<tr>
+									<td>Чистка принтера</td>
+									<td>40 мин</td>
+									<td>1 мес</td>
+									<td>от 1000 ₽</td>
+								</tr>
+
+								<!-- Телевизоры -->
+								<tr>
+									<td colspan="4" class="category-row">Телевизоры</td>
+								</tr>
+								<tr>
+									<td>Настройка каналов</td>
+									<td>30 мин</td>
+									<td>1 мес</td>
+									<td>от 500 ₽</td>
+								</tr>
+								<tr>
+									<td>Подключение Smart TV</td>
+									<td>40 мин</td>
+									<td>1 мес</td>
+									<td>от 700 ₽</td>
+								</tr>
+								<tr>
+									<td>Настройка приставки / HDMI</td>
+									<td>20–30 мин</td>
+									<td>1 мес</td>
+									<td>от 500 ₽</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="price_list_form">
+							<h2>Не нашли нужную услугу?</h2>
+							<p>
+								Оставьте заявку — мы свяжемся с вами и рассчитаем стоимость
+								индивидуально
+							</p>
+							<form>
+								<input type="text" placeholder="Ваше имя" required />
+								<input type="tel" placeholder="Телефон" required />
+								<textarea placeholder="Опишите, что нужно сделать"></textarea>
+								<button type="submit" class="btn">Отправить заявку</button>
+							</form>
+						</div>
 					</div>
 				</section>
 			</article>
