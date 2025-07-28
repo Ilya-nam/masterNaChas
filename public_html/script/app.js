@@ -201,13 +201,13 @@ async function handleFormSubmit(form, nameId, phoneId, descId, submitBtn) {
 		customer_phone: phoneForApi,
 		description: `✉️ Заявка с сайта МНЧ Компания\n🗒 Описание от клиента:\n${description}\n🔎 Запрос: ${utmParams.utm_term}\n⭐️ Группа: ${utmParams.utm_group}\n📅 Дата и время отправки: ${dateTime}\nClientID: ${ClientID}`,
 		city_id: utmParams.utm_city_id,
-		source_id: ID,
+		source_id: utmParams.utm_city_id,
 	}
 
 	submitBtn.disabled = true
 
 	try {
-		const response = await fetch('/path/to/send-lead.php', {
+		const response = await fetch('/api/send_mnc_lead.php', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(data),
@@ -273,23 +273,30 @@ if (modalForm) {
 
 async function sendTelegramMessage(message) {
 	try {
-		const response = await fetch('/path/to/sendMessage.php', {
+		const response = await fetch('/api/sendMessage.php', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ message }),
 		})
 
+		const text = await response.text()
+
+		let data
+		try {
+			data = JSON.parse(text)
+		} catch {
+			data = null
+		}
+
 		if (!response.ok) {
-			const errorData = await response.json()
 			console.error(
 				'Ошибка при отправке сообщения:',
-				errorData.error || response.statusText
+				(data && data.error) || response.statusText || text
 			)
 			return false
 		}
 
-		const result = await response.json()
-		console.log('Сообщение отправлено:', result)
+		console.log('Сообщение отправлено:', data)
 		return true
 	} catch (error) {
 		console.error('Ошибка сети:', error)

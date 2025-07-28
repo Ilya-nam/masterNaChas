@@ -1,9 +1,8 @@
 <?php
-// Отправлять JSON в ответ
 header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405); // Method Not Allowed
+    http_response_code(405);
     echo json_encode(['error' => 'Only POST allowed']);
     exit;
 }
@@ -29,7 +28,6 @@ $post_fields = [
     'text' => $message,
 ];
 
-// Отправка POST запроса через cURL
 $ch = curl_init();
 
 curl_setopt($ch, CURLOPT_URL, $url);
@@ -49,5 +47,23 @@ if ($response === false) {
 
 curl_close($ch);
 
-http_response_code($httpCode);
-echo $response;
+// Пробуем декодировать ответ от Telegram
+$decoded = json_decode($response, true);
+
+// Если декодирование неудачно — возвращаем ошибку
+if ($decoded === null) {
+    http_response_code(500);
+    echo json_encode(['error' => 'Invalid response from Telegram API']);
+    exit;
+}
+
+// Если Telegram API вернул ошибку (ok === false)
+if (isset($decoded['ok']) && $decoded['ok'] === false) {
+    http_response_code(500);
+    echo json_encode(['error' => $decoded['description'] ?? 'Telegram API error']);
+    exit;
+}
+
+// Всё успешно
+http_response_code(200);
+echo json_encode(['result' => true, 'telegram_response' => $decoded]);
