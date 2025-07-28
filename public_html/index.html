@@ -49,7 +49,7 @@
 					<li><a href="#contacts" class="header_nav__link">Контакты</a></li>
 				</ul>
 			</nav>
-			<a href="tel:+79010789196" class="call_button">
+			<a href="tel:+79010789196" onclick="clickPhone()" class="call_button">
 				<img src="/images/phone-call.webp" alt="" />
 			</a>
 		</header>
@@ -515,7 +515,10 @@
 						<ul>
 							<li class="contacts__block__li">
 								Номер телефона:
-								<a href="tel:+79010789196" class="contacts__link"
+								<a
+									href="tel:+79010789196"
+									onclick="clickPhone()"
+									class="contacts__link"
 									>+7 (901) 078-91-96</a
 								>
 							</li>
@@ -554,7 +557,9 @@
 								id="contacts__desc"
 								required
 							></textarea>
-							<button type="submit" class="btn">Отправить заявку</button>
+							<button type="submit" class="btn" id="submit__contacts">
+								Отправить заявку
+							</button>
 						</form>
 					</div>
 				</section>
@@ -602,10 +607,11 @@
 					ОСТАВЬТЕ ЗАЯВКУ И ПОЛУЧИТЕ СКИДКУ НА ПЕРВОЕ ОБРАЩЕНИЕ ДО
 					<span class="orange_text">30%</span>
 				</h1>
-				<form action="" class="modal_form">
+				<form action="" class="modal_form" id="modal_form">
 					<input
 						type="text"
 						placeholder="Имя:"
+						id="modal_name"
 						class="modal_form_inp"
 						required
 					/>
@@ -613,16 +619,19 @@
 						type="tel"
 						placeholder="Телефон:"
 						class="modal_form_inp input_tel"
+						id="modal_tel"
 						required
 					/>
 					<textarea
 						name=""
-						id=""
+						id="modal_desc"
 						placeholder="Описание:"
 						class="modal_form_textarea"
 						required
 					></textarea>
-					<button type="submit" class="btn modal_form_btn">Отправить</button>
+					<button type="submit" class="btn modal_form_btn" id="modal_submit">
+						Отправить
+					</button>
 				</form>
 			</div>
 		</div>

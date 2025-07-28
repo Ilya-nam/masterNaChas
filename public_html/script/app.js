@@ -109,9 +109,6 @@ function openModal() {
 	document.body.classList.add('body-no-scroll')
 }
 
-const form = document.getElementById('contacts__form')
-const submitBtn = form.querySelector('button[type="submit"]')
-
 function showPopup(message, type = 'success', duration = 3000) {
 	const existing = document.querySelector('.custom-popup')
 	if (existing) existing.remove()
@@ -167,14 +164,13 @@ function updateLeadSendData() {
 	localStorage.setItem('lead_send_data', JSON.stringify(data))
 }
 
-form.addEventListener('submit', async function (event) {
-	event.preventDefault()
-
+// Функция универсальной отправки
+async function handleFormSubmit(form, nameId, phoneId, descId, submitBtn) {
 	if (!canSendLead()) return
 
-	const name = document.getElementById('contacts__name').value.trim()
-	const phone = document.getElementById('contacts__tel').value.trim()
-	const description = document.getElementById('contacts__desc').value.trim()
+	const name = form.querySelector(`#${nameId}`).value.trim()
+	const phone = form.querySelector(`#${phoneId}`).value.trim()
+	const description = form.querySelector(`#${descId}`).value.trim()
 
 	const phonePattern = /^\+7\s\(9\d{2}\)\s\d{3}-\d{2}-\d{2}$/
 	if (!phonePattern.test(phone)) {
@@ -196,11 +192,16 @@ form.addEventListener('submit', async function (event) {
 
 	const formattedPhone = phone.replace(/\D/g, '')
 	const phoneForApi = '+7' + formattedPhone.slice(1)
+	const utmParams = getCustomUtmParams()
+	const dateTime = getVladivostokDateTime()
+	const ClientID = '123214231'
 
 	const data = {
 		customer_name: name,
 		customer_phone: phoneForApi,
-		description: description,
+		description: `✉️ Заявка с сайта МНЧ Компания\n🗒 Описание от клиента:\n${description}\n🔎 Запрос: ${utmParams.utm_term}\n⭐️ Группа: ${utmParams.utm_group}\n📅 Дата и время отправки: ${dateTime}\nClientID: ${ClientID}`,
+		city_id: utmParams.utm_city_id,
+		source_id: ID,
 	}
 
 	submitBtn.disabled = true
@@ -220,7 +221,8 @@ form.addEventListener('submit', async function (event) {
 				'success',
 				4000
 			)
-			this.reset()
+			sendTelegramMessage(data.description)
+			form.reset()
 			updateLeadSendData()
 		} else {
 			showPopup(
@@ -235,7 +237,39 @@ form.addEventListener('submit', async function (event) {
 	} finally {
 		submitBtn.disabled = false
 	}
-})
+}
+
+// Обработчик для contacts__form
+const contactsForm = document.getElementById('contacts__form')
+if (contactsForm) {
+	const contactsSubmit = contactsForm.querySelector('button[type="submit"]')
+	contactsForm.addEventListener('submit', function (e) {
+		e.preventDefault()
+		handleFormSubmit(
+			contactsForm,
+			'contacts__name',
+			'contacts__tel',
+			'contacts__desc',
+			contactsSubmit
+		)
+	})
+}
+
+// Обработчик для modal_form
+const modalForm = document.getElementById('modal_form')
+if (modalForm) {
+	const modalSubmit = modalForm.querySelector('button[type="submit"]')
+	modalForm.addEventListener('submit', function (e) {
+		e.preventDefault()
+		handleFormSubmit(
+			modalForm,
+			'modal_name',
+			'modal_tel',
+			'modal_desc',
+			modalSubmit
+		)
+	})
+}
 
 async function sendTelegramMessage(message) {
 	try {
@@ -261,4 +295,78 @@ async function sendTelegramMessage(message) {
 		console.error('Ошибка сети:', error)
 		return false
 	}
+}
+
+function getCustomUtmParams() {
+	const storageKey = 'custom_utm_params'
+
+	// Попытка получить из localStorage
+	let stored = localStorage.getItem(storageKey)
+	if (stored) {
+		try {
+			const parsed = JSON.parse(stored)
+			// Если есть все 3 ключа, возвращаем сразу
+			if (
+				typeof parsed.utm_group === 'string' &&
+				typeof parsed.utm_term === 'string' &&
+				typeof parsed.utm_city_id === 'string'
+			) {
+				return parsed
+			}
+		} catch {
+			// игнорируем ошибки парсинга
+		}
+	}
+
+	// Если в localStorage нет или невалидные, берём из URL
+	const urlParams = new URLSearchParams(window.location.search)
+
+	const utm_group = urlParams.get('utm_group') || ''
+	let utm_term = urlParams.get('utm_term') || ''
+	const utm_city_id = urlParams.get('utm_city_id') || ''
+
+	try {
+		utm_term = decodeURIComponent(utm_term)
+	} catch {}
+
+	const result = {
+		utm_group,
+		utm_term,
+		utm_city_id,
+	}
+
+	localStorage.setItem(storageKey, JSON.stringify(result))
+
+	return result
+}
+
+function getVladivostokDateTime() {
+	const options = {
+		year: 'numeric',
+		month: '2-digit',
+		day: '2-digit',
+		hour: '2-digit',
+		minute: '2-digit',
+		second: '2-digit',
+		hour12: false,
+		timeZone: 'Asia/Vladivostok',
+	}
+
+	const formatter = new Intl.DateTimeFormat('ru-RU', options)
+	const parts = formatter.formatToParts(new Date())
+
+	const map = {}
+	for (const part of parts) {
+		map[part.type] = part.value
+	}
+
+	return `${map.day}.${map.month}.${map.year} ${map.hour}:${map.minute}:${map.second}`
+}
+
+function clickPhone() {
+	const dateTime = getVladivostokDateTime()
+	const ClientID = '1232432423432'
+	const utmParams = getCustomUtmParams()
+	const massage = `📞 Позвонили МНЧ Компания.\n⭐️ Группа: ${utmParams.utm_group}\n🔍 Запрос: ${utmParams.utm_term}\n📅 Дата и время: ${dateTime}\nClientID: ${ClientID}`
+	sendTelegramMessage(massage)
 }
