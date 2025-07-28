@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="/style/reset.css" />
 		<link rel="stylesheet" href="/style/style.css" />
 		<script src="/script/app.js" defer></script>
+		<script src="https://unpkg.com/imask"></script>
 	</head>
 	<body>
 		<header class="header">
@@ -14,14 +15,15 @@
 				<a class="logo orange_text" href="#hero">МНЧ</a>
 				<ul class="header_nav__ul">
 					<li><a href="#services" class="header_nav__link">Услуги</a></li>
+					<li><a href="#about_company" class="header_nav__link">О нас</a></li>
 					<li><a href="#price-list" class="header_nav__link">Цены</a></li>
 					<li><a href="#reviews" class="header_nav__link">Отзывы</a></li>
 					<li><a href="#contacts" class="header_nav__link">Контакты</a></li>
 				</ul>
 			</nav>
-			<button class="call_button">
+			<a href="tel:+79010789196" class="call_button">
 				<img src="/images/phone-call.webp" alt="" />
-			</button>
+			</a>
 		</header>
 		<main class="main">
 			<article class="main_article">
@@ -36,11 +38,13 @@
 							Срочный ремонт, установка и сборка — выезд в течение 30 минут, без
 							выходных.
 						</p>
-						<button class="lead_button btn">ВЫЗВАТЬ МАСТЕРА</button>
+						<button class="lead_button btn" onclick="openModal()">
+							ВЫЗВАТЬ МАСТЕРА
+						</button>
 					</div>
 					<svg
-						class="hero-parabola"
-						viewBox="0 0 1440 100"
+						class="hero-parabola alterable_block"
+						viewBox="0 -100 1440 200"
 						preserveAspectRatio="none"
 					>
 						<path d="M0,0 Q720,100 1440,0 L1440,100 L0,100 Z" />
@@ -49,21 +53,21 @@
 				<section class="advantages alterable_block">
 					<h1 class="advantages__h1">Почему выбирают нас</h1>
 					<div class="advantages_list">
-						<div class="advantage">
+						<div class="advantage scroll-fade">
 							<img src="/images/clock-time.png" alt="" class="advantage__img" />
 							<p class="advantage__p">Выполняем работу в кратчайшие сроки</p>
 						</div>
-						<div class="advantage">
+						<div class="advantage scroll-fade">
 							<img src="/images/foreman.png" alt="" class="advantage__img" />
 							<p class="advantage__p">
 								Лучшие мастера в городе с опытом от 10 лет
 							</p>
 						</div>
-						<div class="advantage">
+						<div class="advantage scroll-fade">
 							<img src="/images/shield.png" alt="" class="advantage__img" />
 							<p class="advantage__p">Гарантия на работы до 5 лет</p>
 						</div>
-						<div class="advantage">
+						<div class="advantage scroll-fade">
 							<img
 								src="/images/cargo-truck.png"
 								alt=""
@@ -83,28 +87,28 @@
 					</svg>
 					<h1 class="services__h1">Чем мы занимаемся</h1>
 					<div class="services__blocks">
-						<a href="" class="services__block">
+						<a href="" class="services__block scroll-fade">
 							<img src="/images/computer.png" class="services__img" alt="" />
 							<h2 class="services__h2">Персональные компьютеры</h2>
 							<p class="services__p">
 								Ремонт, чистка и настройка. Выезд по городу и пригороду
 							</p>
 						</a>
-						<a href="" class="services__block">
+						<a href="" class="services__block scroll-fade">
 							<img src="/images/laptop.png" class="services__img" alt="" />
 							<h2 class="services__h2">Ноутбуки</h2>
 							<p class="services__p">
 								Ремонт, чистка и настройка. Выезд по городу и пригороду
 							</p>
 						</a>
-						<a href="" class="services__block">
+						<a href="" class="services__block scroll-fade">
 							<img src="/images/monoblock.png" class="services__img" alt="" />
 							<h2 class="services__h2">Моноблоки</h2>
 							<p class="services__p">
 								Ремонт, чистка и настройка. Выезд по городу и пригороду
 							</p>
 						</a>
-						<a href="" class="services__block">
+						<a href="" class="services__block scroll-fade">
 							<img src="/images/printer.png" class="services__img" alt="" />
 							<h2 class="services__h2">Принтеры</h2>
 							<p class="services__p">
@@ -112,7 +116,7 @@
 								пригороду
 							</p>
 						</a>
-						<a href="" class="services__block">
+						<a href="" class="services__block scroll-fade">
 							<img
 								src="/images/multifunction-printer.png"
 								class="services__img"
@@ -124,7 +128,7 @@
 								пригороду
 							</p>
 						</a>
-						<a href="" class="services__block">
+						<a href="" class="services__block scroll-fade">
 							<img src="/images/scaner.png" class="services__img" alt="" />
 							<h2 class="services__h2">Сканеры</h2>
 							<p class="services__p">
@@ -132,7 +136,7 @@
 								пригороду
 							</p>
 						</a>
-						<a href="" class="services__block">
+						<a href="" class="services__block scroll-fade">
 							<img src="/images/television.png" class="services__img" alt="" />
 							<h2 class="services__h2">Телевизоры</h2>
 							<p class="services__p">
@@ -140,7 +144,7 @@
 								пригород обговаривается индивидуально
 							</p>
 						</a>
-						<a href="" class="services__block">
+						<a href="" class="services__block scroll-fade">
 							<img
 								src="/images/appliance-repair.png"
 								class="services__img"
@@ -153,7 +157,7 @@
 								кондиционеров
 							</p>
 						</a>
-						<a href="" class="services__block">
+						<a href="" class="services__block scroll-fade">
 							<img src="/images/fuse-box.png" class="services__img" alt="" />
 							<h2 class="services__h2">Электрика</h2>
 							<p class="services__p">
@@ -161,21 +165,21 @@
 								проводки
 							</p>
 						</a>
-						<a href="" class="services__block">
+						<a href="" class="services__block scroll-fade">
 							<img src="/images/plumbing.png" class="services__img" alt="" />
 							<h2 class="services__h2">Сантехника</h2>
 							<p class="services__p">
 								Устранение протечек, замена смесителей, установка сантехники
 							</p>
 						</a>
-						<a href="" class="services__block">
+						<a href="" class="services__block scroll-fade">
 							<img src="/images/knife.png" class="services__img" alt="" />
 							<h2 class="services__h2">Отделочные работы</h2>
 							<p class="services__p">
 								Поклейка обоев, покраска, укладка плитки, мелкий ремонт стен
 							</p>
 						</a>
-						<a href="" class="services__block">
+						<a href="" class="services__block scroll-fade">
 							<img src="/images/assembly.png" class="services__img" alt="" />
 							<h2 class="services__h2">Сборка мебели</h2>
 							<p class="services__p">
@@ -191,10 +195,59 @@
 						<path d="M0,192 C480,320 960,0 1440,128 L1440,320 L0,320 Z"></path>
 					</svg>
 				</section>
+				<section class="about_company alterable_block" id="about_company">
+					<h1 class="about_company__h1">О нас</h1>
+					<div class="about_company__text">
+						<p class="about_company__p">
+							Мы специализируемся на профессиональном ремонте компьютерной
+							техники, телевизоров, принтеров и множества других устройств. Если
+							ваша техника перестала работать так, как нужно, наши опытные
+							мастера быстро выявят и устранят любую неисправность. Помимо
+							электроники, мы предлагаем услуги мелкого бытового ремонта — от
+							ремонта сантехники до мелких домашних работ. Устранение протечек,
+							замена кранов, ремонт труб, установка и настройка бытовых приборов
+							— все это выполняется аккуратно и с гарантией качества. Мы
+							понимаем, как важна для вас исправная техника и комфорт в доме,
+							поэтому работаем оперативно и надежно. Ваше удобство — наш главный
+							приоритет. Обращайтесь к нам, чтобы техника и бытовые системы
+							всегда были в отличном состоянии!
+						</p>
+						<div class="about_company_statistic">
+							<p class="about_company__stat">
+								<strong
+									><span class="orange_text about_company__strong"
+										>+5500</span
+									></strong
+								>Выполненных заказов
+							</p>
+							<p class="about_company__stat">
+								<strong
+									><span class="orange_text about_company__strong"
+										>+3650</span
+									></strong
+								>Довольных клиентов
+							</p>
+							<p class="about_company__stat">
+								<strong
+									><span class="orange_text about_company__strong"
+										>Больше 5 лет</span
+									></strong
+								>Работаем в данной сфере
+							</p>
+							<p class="about_company__stat">
+								<strong
+									><span class="orange_text about_company__strong"
+										>98,5%</span
+									></strong
+								>Заказов выполняются в первый же день
+							</p>
+						</div>
+					</div>
+				</section>
 				<section class="price_list alterable_block" id="price-list">
 					<h1 class="price_list__h1">Актуальные цены</h1>
 					<div class="price-table-accordion">
-						<details>
+						<details class="scroll-fade">
 							<summary>🔌 Электрика</summary>
 							<table class="price-table">
 								<thead>
@@ -229,7 +282,7 @@
 						</details>
 
 						<!-- Сантехника -->
-						<details>
+						<details class="scroll-fade">
 							<summary>🚰 Сантехника</summary>
 							<table class="price-table">
 								<thead>
@@ -264,7 +317,7 @@
 						</details>
 
 						<!-- Компьютеры -->
-						<details>
+						<details class="scroll-fade">
 							<summary>🖥️ Компьютеры</summary>
 							<table class="price-table">
 								<thead>
@@ -299,7 +352,7 @@
 						</details>
 
 						<!-- Принтеры -->
-						<details>
+						<details class="scroll-fade">
 							<summary>🖨️ Принтеры</summary>
 							<table class="price-table">
 								<thead>
@@ -334,7 +387,7 @@
 						</details>
 
 						<!-- Телевизоры -->
-						<details>
+						<details class="scroll-fade">
 							<summary>📺 Телевизоры</summary>
 							<table class="price-table">
 								<thead>
@@ -386,8 +439,8 @@
 							</div>
 							<div class="review">
 								<p class="review-text">
-									Позвонил — мастер приехал через час и помог с протечкой. Очень
-									доволен!
+									Позвонила — мастер приехал через час и помог с протечкой.
+									Очень довольна!
 								</p>
 								<div class="review-meta">
 									<span class="review-name">Марина Т. (mar***@yandex.ru)</span>
@@ -434,10 +487,15 @@
 						<ul>
 							<li class="contacts__block__li">
 								Номер телефона:
-								<a href="" class="contacts__link">+7 (900) 846-54-45</a>
+								<a href="tel:+79010789196" class="contacts__link"
+									>+7 (901) 078-91-96</a
+								>
 							</li>
 							<li class="contacts__block__li">
-								Почта: <a href="" class="contacts__link">example@mail.ru</a>
+								Почта:
+								<a href="mailto:mnch24@mail.ru" class="contacts__link"
+									>mnch24@mail.ru</a
+								>
 							</li>
 							<li class="contacts__block__li">
 								Время работы:
@@ -448,12 +506,24 @@
 								<span class="contacts__link">По всему городу</span>
 							</li>
 						</ul>
-						<form action="" class="contacts__form">
+						<form action="" class="contacts__form" id="contacts__form">
 							<h2>Оставьте заявку и мы сами свяжемся с вами</h2>
-							<input type="text" placeholder="Ваше имя" required />
-							<input type="tel" placeholder="Телефон" required />
+							<input
+								type="text"
+								placeholder="Ваше имя"
+								id="contacts__name"
+								required
+							/>
+							<input
+								type="tel"
+								id="contacts__tel"
+								placeholder="Телефон"
+								class="input_tel"
+								required
+							/>
 							<textarea
 								placeholder="Опишите, что нужно сделать"
+								id="contacts__desc"
 								required
 							></textarea>
 							<button type="submit" class="btn">Отправить заявку</button>
@@ -486,8 +556,8 @@
 
 					<div class="footer__contact">
 						<h3>Контакты</h3>
-						<p><i class="fas fa-phone"></i> +7 (999) 123-45-67</p>
-						<p><i class="fas fa-envelope"></i> info@example.com</p>
+						<p><i class="fas fa-phone"></i> +7 (901) 078-91-96</p>
+						<p><i class="fas fa-envelope"></i> mnch24@mail.ru</p>
 					</div>
 				</div>
 
@@ -497,5 +567,36 @@
 				</div>
 			</footer>
 		</footer>
+		<div class="modal_bg" id="modal">
+			<div class="modal_form_block">
+				<button class="modal_close_btn" onclick="closeModal()">✕</button>
+				<h1 class="modal_form_block__h1">
+					ОСТАВЬТЕ ЗАЯВКУ И ПОЛУЧИТЕ СКИДКУ НА ПЕРВОЕ ОБРАЩЕНИЕ ДО
+					<span class="orange_text">30%</span>
+				</h1>
+				<form action="" class="modal_form">
+					<input
+						type="text"
+						placeholder="Имя:"
+						class="modal_form_inp"
+						required
+					/>
+					<input
+						type="tel"
+						placeholder="Телефон:"
+						class="modal_form_inp input_tel"
+						required
+					/>
+					<textarea
+						name=""
+						id=""
+						placeholder="Описание:"
+						class="modal_form_textarea"
+						required
+					></textarea>
+					<button type="submit" class="btn modal_form_btn">Отправить</button>
+				</form>
+			</div>
+		</div>
 	</body>
 </html>
