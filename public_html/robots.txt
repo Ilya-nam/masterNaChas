@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /temp/
+Disallow: /private/
+Allow: /
+
+Host: 24mnch.ru
+Sitemap: https://24mnch.ru/sitemap.xml
