@@ -364,9 +364,25 @@ function getVladivostokDateTime() {
 }
 
 function clickPhone() {
-	const dateTime = getVladivostokDateTime()
 	const ClientID = '1232432423432'
+	const storageKey = `call_clicked_${ClientID}`
+	const now = Date.now()
+
+	// Проверка времени последнего уведомления
+	const lastSent = parseInt(localStorage.getItem(storageKey), 10)
+	if (!isNaN(lastSent) && now - lastSent < 60 * 60 * 1000) {
+		console.log('Уже отправлено недавно, ждём 1 час')
+		return
+	}
+
+	// Формирование сообщения
+	const dateTime = getVladivostokDateTime()
 	const utmParams = getCustomUtmParams()
-	const massage = `📞 Позвонили МНЧ Компания.\n⭐️ Группа: ${utmParams.utm_group}\n🔍 Запрос: ${utmParams.utm_term}\n📅 Дата и время: ${dateTime}\nClientID: ${ClientID}`
-	sendTelegramMessage(massage)
+	const message = `📞 Позвонили МНЧ Компания.\n⭐️ Группа: ${utmParams.utm_group}\n🔍 Запрос: ${utmParams.utm_term}\n📅 Дата и время: ${dateTime}\nClientID: ${ClientID}`
+
+	// Отправка
+	sendTelegramMessage(message)
+
+	// Сохраняем время отправки
+	localStorage.setItem(storageKey, now.toString())
 }
