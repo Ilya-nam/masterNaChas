@@ -15,7 +15,7 @@ if (!$data || empty($data['message'])) {
     exit;
 }
 
-require __DIR__ . '/config.php';
+require __DIR__ . '/../../config.php';
 
 $message = trim($data['message']);
 $chat_id = TELEGRAM_CHAT_ID;

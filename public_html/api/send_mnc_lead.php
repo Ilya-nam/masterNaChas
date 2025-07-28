@@ -16,7 +16,7 @@ if (!$input) {
 require __DIR__ . '/../../config.php';
 
 // Формируем Basic Auth из констант
-$authString = base64_encode(API_LOGIN . ':' . API_PASSWORD);
+$authString = base64_encode(API_LOGIN . ':' . API_CODE);
 $headers = [
     "Authorization: Basic $authString",
     "Content-Type: application/json",
