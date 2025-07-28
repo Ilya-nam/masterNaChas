@@ -71,6 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	})
 })
 
+const counterId = 103509855
+
 const reviews = document.querySelectorAll('.review')
 const nextBtn = document.querySelector('.carousel-btn.next')
 const prevBtn = document.querySelector('.carousel-btn.prev')
@@ -194,14 +196,14 @@ async function handleFormSubmit(form, nameId, phoneId, descId, submitBtn) {
 	const phoneForApi = '+7' + formattedPhone.slice(1)
 	const utmParams = getCustomUtmParams()
 	const dateTime = getVladivostokDateTime()
-	const ClientID = '123214231'
+	const ClientID = getYandexClientID(counterId)
 
 	const data = {
 		customer_name: name,
 		customer_phone: phoneForApi,
 		description: `✉️ Заявка с сайта МНЧ Компания\n🗒 Описание от клиента:\n${description}\n🔎 Запрос: ${utmParams.utm_term}\n⭐️ Группа: ${utmParams.utm_group}\n📅 Дата и время отправки: ${dateTime}\nClientID: ${ClientID}`,
 		city_id: utmParams.utm_city_id,
-		source_id: utmParams.utm_city_id,
+		source_id: 375,
 	}
 
 	submitBtn.disabled = true
@@ -221,6 +223,7 @@ async function handleFormSubmit(form, nameId, phoneId, descId, submitBtn) {
 				'success',
 				4000
 			)
+			ym(103509855, 'reachGoal', 'lead')
 			sendTelegramMessage(data.description)
 			form.reset()
 			updateLeadSendData()
@@ -371,7 +374,7 @@ function getVladivostokDateTime() {
 }
 
 function clickPhone() {
-	const ClientID = '1232432423432'
+	const ClientID = getYandexClientID(counterId)
 	const storageKey = `call_clicked_${ClientID}`
 	const now = Date.now()
 
@@ -392,4 +395,57 @@ function clickPhone() {
 
 	// Сохраняем время отправки
 	localStorage.setItem(storageKey, now.toString())
+}
+
+function getYandexClientID(counterId) {
+	// 1. Попытка через cookie _ym_uid
+	function getFromCookie() {
+		const cookies = document.cookie.split(';')
+		for (let cookie of cookies) {
+			cookie = cookie.trim()
+			if (cookie.startsWith('_ym_uid=')) {
+				return cookie.substring('_ym_uid='.length)
+			}
+		}
+		return null
+	}
+
+	// 2. Попытка через API Метрики getClientID (v2 или v1)
+	function getFromAPI() {
+		try {
+			if (window.Ya && window.Ya.Metrika2 && window.Ya.Metrika2[counterId]) {
+				return window.Ya.Metrika2[counterId].getClientID()
+			}
+			if (window.Ya && window.Ya.Metrika && window.Ya.Metrika[counterId]) {
+				return window.Ya.Metrika[counterId].getClientID()
+			}
+		} catch (e) {
+			// игнорируем ошибки
+		}
+		return null
+	}
+
+	// 3. Попытка через cookie yandexuid (если надо)
+	function getFromYandexUidCookie() {
+		const cookies = document.cookie.split(';')
+		for (let cookie of cookies) {
+			cookie = cookie.trim()
+			if (cookie.startsWith('yandexuid=')) {
+				return cookie.substring('yandexuid='.length)
+			}
+		}
+		return null
+	}
+
+	// Попытки получить clientID по очереди
+	let clientID = getFromAPI()
+	if (clientID) return clientID
+
+	clientID = getFromCookie()
+	if (clientID) return clientID
+
+	clientID = getFromYandexUidCookie()
+	if (clientID) return clientID
+
+	return null
 }
