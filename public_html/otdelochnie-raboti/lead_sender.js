@@ -72,7 +72,7 @@ async function handleFormSubmit(form, nameId, phoneId, descId, submitBtn) {
 	const data = {
 		customer_name: name,
 		customer_phone: phoneForApi,
-		description: `✉️ Заявка с сайта МНЧ Компания Сантехника\n🗒 Описание от клиента:\n${description}\n🔎 Запрос: ${utmParams.utm_term}\n⭐️ Группа: ${utmParams.utm_group}\n📅 Дата и время отправки: ${dateTime}\nClientID: ${ClientID}`,
+		description: `✉️ Заявка с сайта МНЧ Компания Отделочные работы\n🗒 Описание от клиента:\n${description}\n🔎 Запрос: ${utmParams.utm_term}\n⭐️ Группа: ${utmParams.utm_group}\n📅 Дата и время отправки: ${dateTime}\nClientID: ${ClientID}`,
 		city_id: utmParams.utm_city_id,
 		source_id: 375,
 	}
@@ -94,7 +94,7 @@ async function handleFormSubmit(form, nameId, phoneId, descId, submitBtn) {
 				'success',
 				4000
 			)
-			ym(103509855, 'reachGoal', 'santeh_lead')
+			ym(103509855, 'reachGoal', 'otdelka_lead')
 			sendTelegramMessage(data.description)
 			form.reset()
 			updateLeadSendData()
@@ -267,9 +267,9 @@ function clickPhone() {
 
 	const dateTime = getVladivostokDateTime()
 	const utmParams = getCustomUtmParams()
-	const message = `📞 Позвонили МНЧ Компания Сантехника\n⭐️ Группа: ${utmParams.utm_group}\n🔍 Запрос: ${utmParams.utm_term}\n📅 Дата и время: ${dateTime}\nClientID: ${ClientID}`
+	const message = `📞 Позвонили МНЧ Компания Отделочные работы\n⭐️ Группа: ${utmParams.utm_group}\n🔍 Запрос: ${utmParams.utm_term}\n📅 Дата и время: ${dateTime}\nClientID: ${ClientID}`
 
-	ym(103509855, 'reachGoal', 'santeh_call')
+	ym(103509855, 'reachGoal', 'otdelka_call')
 	sendTelegramMessage(message)
 
 	localStorage.setItem(storageKey, now.toString())
