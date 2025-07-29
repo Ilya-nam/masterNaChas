@@ -592,6 +592,10 @@ html {
 	border-radius: 10px;
 }
 
+.modal_form_textarea {
+	height: calc(var(--index) * 6);
+}
+
 .contacts__form textarea {
 	resize: none;
 }
@@ -828,10 +832,9 @@ html {
 		--index: calc(1vw + 1vh);
 		--mediumFS: calc(var(--index) * 1.5);
 		--regularFS: calc(var(--index) * 1);
-		--largeFS: calc(var(--index) * 2.3);
-		--extraLargeFS: calc(var(--index) * 3);
+		--largeFS: calc(var(--index) * 2);
+		--extraLargeFS: calc(var(--index) * 2.8);
 	}
-
 	.call_button {
 		padding: calc(var(--index) * 0.7) calc(var(--index) * 0.7);
 	}
@@ -851,6 +854,9 @@ html {
 	.hero__p {
 		width: 80%;
 		line-height: 1.1;
+	}
+	.services__block {
+		width: 70vw;
 	}
 	.about_company__stat {
 		width: 40%;
@@ -886,6 +892,9 @@ html {
 	.contacts__block {
 		flex-direction: column;
 		gap: calc(var(--index) * 2);
+	}
+	.services__block {
+		width: calc(var(--index) * 16);
 	}
 	.contacts__form {
 		width: 80vw;
