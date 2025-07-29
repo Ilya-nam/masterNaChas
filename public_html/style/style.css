@@ -713,7 +713,7 @@ html {
 }
 
 .modal_form_block {
-	background-color: var(--bg_color);
+	background-color: var(--bg2_color);
 	position: absolute;
 	left: 50%;
 	top: 50%;
