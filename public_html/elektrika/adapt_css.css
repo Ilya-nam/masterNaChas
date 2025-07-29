@@ -1,0 +1,15 @@
+.hero {
+	background-image: url(/images/background-elektr.webp);
+	background-position: right center;
+}
+.services {
+	background-image: url(/images/background-elektr2.webp);
+	background-position: right center;
+}
+
+@media (max-width: 680px) {
+	.hero,
+	.services {
+		background-position: calc(100% + 100px) center;
+	}
+}

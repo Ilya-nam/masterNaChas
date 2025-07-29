@@ -125,7 +125,7 @@ html {
 }
 
 .hero {
-	background-image: url(/images/hero_background.png);
+	background-image: url(/images/hero_background.webp);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
@@ -236,7 +236,7 @@ html {
 	font-size: var(--mediumFS);
 }
 .services {
-	background-image: url(/images/background.png);
+	background-image: url(/images/background.webp);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
@@ -873,7 +873,7 @@ html {
 		--mediumFS: calc(var(--index) * 1.5);
 		--regularFS: calc(var(--index) * 1);
 		--largeFS: calc(var(--index) * 2);
-		--extraLargeFS: calc(var(--index) * 2.8);
+		--extraLargeFS: calc(var(--index) * 2.6);
 	}
 	.call_button {
 		padding: calc(var(--index) * 0.7) calc(var(--index) * 0.7);
