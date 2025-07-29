@@ -69,6 +69,21 @@ document.addEventListener('DOMContentLoaded', () => {
 			mask: '+7 (000) 000-00-00',
 		})
 	})
+
+	const consent = localStorage.getItem('cookieConsent')
+	const consentBanner = document.getElementById('cookieConsent')
+	const acceptBtn = document.getElementById('acceptBtn')
+
+	if (!consent) {
+		consentBanner.style.display = 'flex'
+	} else {
+		consentBanner.style.display = 'none'
+	}
+
+	acceptBtn.addEventListener('click', function () {
+		localStorage.setItem('cookieConsent', 'accepted')
+		consentBanner.style.display = 'none'
+	})
 })
 
 const reviews = document.querySelectorAll('.review')

@@ -807,6 +807,46 @@ html {
 	background-color: #f44336; /* красный фон */
 }
 
+.cookie-consent {
+	position: fixed;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	background: var(--bg2_color);
+	max-width: 40vw;
+	padding: 15px 20px;
+	border-radius: 8px;
+	gap: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	z-index: 940;
+}
+.cookie-consent p {
+	margin: 0;
+	font-size: var(--regularFS);
+	color: var(--font_color);
+	line-height: 1.3;
+}
+.cookie-consent a {
+	color: #ffa500;
+	text-decoration: underline;
+}
+#acceptBtn {
+	background: #ffa500;
+	border: none;
+	padding: 8px 15px;
+	border-radius: 5px;
+	font-size: var(--regularFS);
+	cursor: pointer;
+	font-weight: bold;
+	color: black;
+}
+#acceptBtn:hover {
+	background: #ffb733;
+}
+
 @media (prefers-color-scheme: light) {
 	:root {
 		--bg_color: rgb(223, 223, 223);
@@ -875,6 +915,14 @@ html {
 	.contacts__form {
 		width: 80vw;
 	}
+	.cookie-consent {
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		max-width: none;
+		border-radius: 0;
+		transform: translateX(0);
+	}
 }
 
 /* Большие телефоны и маленькие планшеты (портрет) */
@@ -903,6 +951,14 @@ html {
 		min-width: 90vw;
 		padding: calc(var(--index) * 5) calc(var(--index) * 2);
 	}
+	.cookie-consent {
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		max-width: none;
+		border-radius: 0;
+		transform: translateX(0);
+	}
 }
 
 /* Планшеты — портрет и ландшафт */
@@ -923,6 +979,14 @@ html {
 	}
 	.contacts__form {
 		width: 80vw;
+	}
+	.cookie-consent {
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		max-width: none;
+		border-radius: 0;
+		transform: translateX(0);
 	}
 }
 
