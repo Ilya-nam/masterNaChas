@@ -74,7 +74,7 @@ async function handleFormSubmit(form, nameId, phoneId, descId, submitBtn) {
 		customer_phone: phoneForApi,
 		description: `✉️ Заявка с сайта МНЧ Компания Ремонт Телевизоров\n🗒 Описание от клиента:\n${description}\n🔎 Запрос: ${utmParams.utm_term}\n⭐️ Группа: ${utmParams.utm_group}\n📅 Дата и время отправки: ${dateTime}\nClientID: ${ClientID}`,
 		city_id: utmParams.utm_city_id,
-		source_id: 375,
+		source_id: 854,
 	}
 
 	submitBtn.disabled = true
