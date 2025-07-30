@@ -82,7 +82,11 @@ async function handleFormSubmit(form, nameId, phoneId, descId, submitBtn) {
 	try {
 		const response = await fetch('/api/send_pc_lead.php', {
 			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'X-Requested-With': 'XMLHttpRequest',
+			},
 			body: JSON.stringify(data),
 		})
 
