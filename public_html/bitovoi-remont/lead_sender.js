@@ -72,7 +72,7 @@ async function handleFormSubmit(form, nameId, phoneId, descId, submitBtn) {
 	const data = {
 		customer_name: name,
 		customer_phone: phoneForApi,
-		description: `✉️ Заявка с сайта МНЧ Компания Мелкий бытовой ремонт и сборка мебели\n🗒 Описание от клиента:\n${description}\n🔎 Запрос: ${utmParams.utm_term}\n⭐️ Группа: ${utmParams.utm_group}\n📅 Дата и время отправки: ${dateTime}\nClientID: ${ClientID}`,
+		description: `✉️ Заявка с сайта МНЧ Компания Мелкий бытовой ремонт и сборка мебели\n🗒 Описание от клиента:\n${description}\n🔎 Запрос: ${utmParams.utm_term}\n⭐️ Группа: ${utmParams.utm_group}\n📅 Дата и время: ${dateTime}\nClientID: ${ClientID}`,
 		city_id: utmParams.utm_city_id,
 		source_id: 375,
 	}
