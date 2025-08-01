@@ -24,14 +24,9 @@ function digitsOnly($phone) {
     return preg_replace('/\D/', '', $phone);
 }
 
-$targetNumberLast10 = '9010789196';
 $toLast10 = mb_substr(digitsOnly($data['to']), -10);
-if ($toLast10 !== $targetNumberLast10) {
-    echo json_encode(['result' => false, 'message' => 'Номер не совпадает']);
-    exit;
-}
-
 $duration = (int)$data['duration'];
+
 if ($duration >= 50) {
     echo json_encode(['result' => false, 'message' => 'Звонок слишком длинный']);
     exit;
@@ -42,14 +37,14 @@ $customerPhone = '+7' . $fromLast10;
 $now = time();
 $canSend = true;
 
-// === Работа с логом с блокировкой ===
-$fp = fopen($logFile, 'c+'); // c+ = create if not exists, read/write
+// Работа с логом
+$fp = fopen($logFile, 'c+');
 if (!$fp) {
     echo json_encode(['result' => false, 'message' => 'Ошибка открытия лог-файла']);
     exit;
 }
 
-flock($fp, LOCK_EX); // Блокировка
+flock($fp, LOCK_EX);
 
 $logLines = [];
 while (($line = fgets($fp)) !== false) {
@@ -74,18 +69,31 @@ if (!$canSend) {
     exit;
 }
 
-// Отправка лида
+// Настройка параметров отправки в зависимости от номера
 $leadData = [
     'customer_phone' => $customerPhone,
     'customer_name' => 'КЛ',
-    'city_id' => 39,
     'description' => "Пропущенный звонок только что\nКомпания МНЧ\nОтправлено автоматически!",
-    'source_id' => 855
 ];
 
-$apiUrl = 'https://kp-lead-centre.ru/api/customer-request/create';
-$authHeader = 'Authorization: Basic ' . base64_encode(API_LOGIN . ':' . API_PASSWORD);
+if ($toLast10 === '9010789196') {
+    $apiUrl = 'https://kp-lead-centre.ru/api/customer-request/create';
+    $authHeader = 'Authorization: Basic ' . base64_encode(API_LOGIN . ':' . API_PASSWORD);
+    $leadData['source_id'] = 855;
+    $leadData['city_id'] = 39;
+} elseif ($toLast10 === '9010783108') {
+    $apiUrl = API_URL;
+    $authHeader = 'Authorization: Basic ' . base64_encode(API_MNC_LOGIN . ':' . API_MNC_PASSWORD);
+    $leadData['source_id'] = 376;
+    // Не добавляем city_id
+} else {
+    flock($fp, LOCK_UN);
+    fclose($fp);
+    echo json_encode(['result' => false, 'message' => 'Номер не совпадает с допустимыми']);
+    exit;
+}
 
+// Отправка запроса
 $ch = curl_init($apiUrl);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POST, true);
@@ -98,14 +106,13 @@ $error = curl_error($ch);
 curl_close($ch);
 
 if ($httpCode === 200 && $response) {
-    // Обновляем лог внутри блокировки
     $logLines[] = "{$customerPhone}|{$now}";
 
-    rewind($fp);             // перемещаем курсор в начало
-    ftruncate($fp, 0);       // очищаем файл
-    fwrite($fp, implode("\n", $logLines) . "\n"); // записываем обновлённый лог
-    fflush($fp);             // сбрасываем буфер
-    flock($fp, LOCK_UN);     // снимаем блокировку
+    rewind($fp);
+    ftruncate($fp, 0);
+    fwrite($fp, implode("\n", $logLines) . "\n");
+    fflush($fp);
+    flock($fp, LOCK_UN);
     fclose($fp);
 
     echo $response;
