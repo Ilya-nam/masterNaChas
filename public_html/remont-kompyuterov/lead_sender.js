@@ -72,7 +72,7 @@ async function handleFormSubmit(form, nameId, phoneId, descId, submitBtn) {
 	const data = {
 		customer_name: name,
 		customer_phone: phoneForApi,
-		description: `✉️ Заявка с сайта МНЧ Компания Компьютерная помощь\n🗒 Описание от клиента:\n${description}\n🔎 Запрос: ${utmParams.utm_term}\n⭐️ Группа: ${utmParams.utm_group}\n📅 Дата и время: ${dateTime}\nClientID: ${ClientID}`,
+		description: `✉️ ЛИД\n🌐 Сайт: МНЧ\n🗒 Описание от клиента: ${description}\n🔎 Запрос: ${utmParams.utm_term}\n⭐️ Группа: ${utmParams.utm_group}\n📞 Номер телефона: ${phoneForApi}\nДата и время: ${dateTime}\nCityID: ${utmParams.utm_city_id}\nClientID: ${ClientID}`,
 		city_id: utmParams.utm_city_id,
 		source_id: 854,
 	}
@@ -271,7 +271,7 @@ function clickPhone() {
 
 	const dateTime = getVladivostokDateTime()
 	const utmParams = getCustomUtmParams()
-	const message = `📞 Позвонили МНЧ Компания Компьютерная помощь\n⭐️ Группа: ${utmParams.utm_group}\n🔍 Запрос: ${utmParams.utm_term}\n📅 Дата и время: ${dateTime}\nClientID: ${ClientID}`
+	const message = `📞 ЗВОНОК\n🌐 Сайт: МНЧ\n🔍 Запрос: ${utmParams.utm_term}\n⭐️Группа: ${utmParams.utm_group}\nДата и время: ${dateTime}\nCityID: ${utmParams.utm_city_id}\nClientID: ${ClientID}`
 
 	ym(103509855, 'reachGoal', 'pc_call')
 	sendTelegramMessage(message)
