@@ -2,6 +2,7 @@ User-agent: *
 Disallow: /admin/
 Disallow: /temp/
 Disallow: /private/
+Clean-param: callibri&utm_city_id&etext&utm_source&utm_medium&utm_campaign&utm_group&utm_content&utm_term
 Allow: /
 
 Host: 24mnch.ru
