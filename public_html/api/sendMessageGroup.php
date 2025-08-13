@@ -19,7 +19,7 @@ require __DIR__ . '/../../config.php';
 
 $message = trim($data['message']);
 $chat_id = TELEGRAM_GROUP_ID;
-$token = TELEGRAM_BOT_API_TOKEN;
+$token = '8373864476:AAEtVWRbQ5DVYKRtkMr3XB6KzoxfpizNmeQ';
 
 $url = "https://api.telegram.org/bot$token/sendMessage";
 
