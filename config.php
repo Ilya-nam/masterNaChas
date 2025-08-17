@@ -7,5 +7,7 @@ define('API_BT_LOGIN', '2XigLps1yZZUYGno');
 define('API_BT_PASSWORD', 'XhOrN5jQGEp6dW63');
 define('API_URL', 'https://mnc-lead-centre.ru/api/customer-request/create');
 define('TELEGRAM_BOT_API_TOKEN', '8062161096:AAHIi5xcvoaoYPukNEZAnfH9Ksld4PsrOwE');
+define('TELEGRAM_BOT_API_MNC_TOKEN', '8373864476:AAEtVWRbQ5DVYKRtkMr3XB6KzoxfpizNmeQ');
 define('TELEGRAM_CHAT_ID', '1347951773');
-define('TELEGRAM_GROUP_ID', '-4824470915');
+define('TELEGRAM_MNC_GROUP_ID', '-4824470915');
+define('TELEGRAM_BT_GROUP_ID', '-4899916608');

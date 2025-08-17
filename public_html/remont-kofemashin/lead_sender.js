@@ -166,7 +166,7 @@ if (modalForm) {
 
 async function sendTelegramMessage(message) {
 	try {
-		const response = await fetch('/api/sendMessage.php', {
+		const response = await fetch('/api/sendMessageBTGroup.php', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ message }),
