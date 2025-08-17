@@ -18,7 +18,7 @@ if (!$data || empty($data['message'])) {
 require __DIR__ . '/../../config.php';
 
 $message = trim($data['message']);
-$chat_id = TELEGRAM_MNC_GROUP_ID;
+$chat_id = TELEGRAM_BT_GROUP_ID;
 $token = TELEGRAM_BOT_API_MNC_TOKEN;
 
 $url = "https://api.telegram.org/bot$token/sendMessage";
