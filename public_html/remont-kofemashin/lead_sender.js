@@ -98,7 +98,7 @@ async function handleFormSubmit(form, nameId, phoneId, descId, submitBtn) {
 				'success',
 				4000
 			)
-			ym(103509855, 'reachGoal', 'hd_lead')
+			ym(103509855, 'reachGoal', 'coffe_lead')
 			sendTelegramMessage(data.description)
 			form.reset()
 			updateLeadSendData()
@@ -273,7 +273,7 @@ function clickPhone() {
 	const utmParams = getCustomUtmParams()
 	const message = `📞 ЗВОНОК\n🌐 Сайт: МНЧ\n🔍 Запрос: ${utmParams.utm_term}\n⭐️Группа: ${utmParams.utm_group}\nДата и время: ${dateTime}\nCityID: ${utmParams.utm_city_id}\nClientID: ${ClientID}`
 
-	ym(103509855, 'reachGoal', 'hd_call')
+	ym(103509855, 'reachGoal', 'coffe_call')
 	sendTelegramMessage(message)
 
 	localStorage.setItem(storageKey, now.toString())

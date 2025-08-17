@@ -85,7 +85,10 @@ if ($toLast10 === '9010789196') {
     $apiUrl = API_URL;
     $authHeader = 'Authorization: Basic ' . base64_encode(API_MNC_LOGIN . ':' . API_MNC_PASSWORD);
     $leadData['source_id'] = 376;
-    // Не добавляем city_id
+} elseif ($toLast10 === '9010785890') {
+    $apiUrl = 'https://bt-lead-centre.ru/api/customer-request/create';
+    $authHeader = 'Authorization: Basic ' . base64_encode(API_BT_LOGIN . ':' . API_BT_PASSWORD);
+    $leadData['source_id'] = 158;
 } else {
     flock($fp, LOCK_UN);
     fclose($fp);
