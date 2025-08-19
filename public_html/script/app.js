@@ -84,6 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		localStorage.setItem('cookieConsent', 'accepted')
 		consentBanner.style.display = 'none'
 	})
+
+	let cityId = getCityId()
+	if (cityId) applyCity(cityId)
 })
 
 const reviews = document.querySelectorAll('.review')
@@ -126,4 +129,42 @@ function openModal(desc = '') {
 	}
 	modal.style.display = 'block'
 	document.body.classList.add('body-no-scroll')
+}
+
+const cityDataTag = document.getElementById('city-data')
+const cities = cityDataTag ? JSON.parse(cityDataTag.textContent) : {}
+
+function getCityId() {
+	const params = new URLSearchParams(window.location.search)
+	let id = null
+
+	if (params.has('utm_city_id')) {
+		id = params.get('utm_city_id')
+		localStorage.setItem('utm_city_id', id)
+	} else if (localStorage.getItem('utm_city_id')) {
+		id = localStorage.getItem('utm_city_id')
+
+		// подставляем в URL без перезагрузки
+		let url = new URL(window.location.href)
+		url.searchParams.set('utm_city_id', id)
+		window.history.replaceState(null, '', url)
+	}
+
+	return id
+}
+
+function applyCity(id) {
+	if (cities[id]) {
+		const city = cities[id]
+		let el1 = document.getElementById('hero_first_h1')
+		let el2 = document.getElementById('advantage__p')
+		let el3 = document.getElementById('contacts__link__city')
+
+		if (el1 && !el1.dataset.cityApplied) {
+			el1.textContent += ' ' + city.local
+			el1.dataset.cityApplied = 'true' // чтобы не дублировалось
+		}
+		if (el2) el2.textContent = city.area
+		if (el3) el3.textContent = city.area2
+	}
 }
