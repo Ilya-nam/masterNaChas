@@ -27,7 +27,7 @@ function digitsOnly($phone) {
 $toLast10 = mb_substr(digitsOnly($data['to']), -10);
 $duration = (int)$data['duration'];
 
-if ($duration >= 50) {
+if ($duration >= 59) {
     echo json_encode(['result' => false, 'message' => 'Звонок слишком длинный']);
     exit;
 }
